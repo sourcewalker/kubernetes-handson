@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-backend-deployment
+  labels: 
+    app: api
+    system: backend
+spec:
+  replicas: 3
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: api
+      system: backend
+  template: 
+    metadata:
+      labels:
+        app: api
+        system: backend
+    spec:
+      containers:
+      - name: dotnet-api-k8s
+        image: sourcewalker/dotnet-api-k8s:latest
+        ports:
+        - containerPort: 80

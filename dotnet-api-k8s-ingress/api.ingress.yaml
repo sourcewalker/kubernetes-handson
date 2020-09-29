@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: api-backend-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: dotnet.k8s.sample.com
+    http:
+      paths:
+      - path: /api
+        backend:
+          serviceName: api-backend-service
+          servicePort: 80
