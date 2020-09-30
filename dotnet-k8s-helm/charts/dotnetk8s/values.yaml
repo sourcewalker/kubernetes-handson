@@ -1,0 +1,52 @@
+app:
+  ingress:
+    name: app-ingress
+
+    paths: 
+      - path: "/"
+        serviceName: site-service
+        servicePort: 80
+      - path: "/api"
+        serviceName: api-backend-service
+        servicePort: 80
+  deployment:
+    strategyType: RollingUpdate
+    maxUnavailable: 1
+
+api:
+  replicaCount: 2
+
+  deployment:
+    name: api-backend-deployment
+
+  image:
+    name: dotnet-api-k8s
+    repository: sourcewalker/dotnet-api-k8s
+    tag: "nightly"
+    containerPort: 80
+
+  service:
+    name: api-backend-service
+    type: ClusterIP
+    protocol: TCP
+    port: 8080
+    targetPort: 80
+
+site:
+  replicaCount: 1
+
+  deployment:
+    name: site-deployment
+
+  image:
+    name: dotnet-mvc-backend-k8s
+    repository: sourcewalker/dotnet-mvc-k8s
+    tag: "firsttry"
+    containerPort: 80
+
+  service:
+    name: site-service
+    type: ClusterIP
+    protocol: TCP
+    port: 8080
+    targetPort: 80

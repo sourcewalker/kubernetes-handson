@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.site.deployment.name }}
+  labels: 
+    app: site
+    system: backend
+spec:
+  replicas: {{ .Values.site.replicaCount }}
+  strategy: 
+    type: {{ .Values.app.deployment.strategyType }}
+    rollingUpdate:
+      maxUnavailable: {{ .Values.app.deployment.maxUnavailable }}
+  selector:
+    matchLabels:
+      app: site
+      system: backend
+  template: 
+    metadata:
+      labels:
+        app: site
+        system: backend
+    spec:
+      containers:
+      - name: {{ .Values.site.image.name }}
+        image: "{{ .Values.site.image.repository }}:{{ .Values.site.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.site.image.containerPort }}

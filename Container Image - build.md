@@ -19,13 +19,13 @@ Les prérequis suivants doivent etre satisfaits:
 3. Choisir un nom et une description pour le repository et procéder à la création
 4. Se logger sur dockerhub depuis la ligne de commande
 ```bash
-$ docker login --username=nomutilisateur --email=votre@email.com
+$ docker login --username=[nomutilisateur] --email=[votre@email.com]
 ````
 Entrer le mot de passe si demandé
 
 5. Générer l'image docker
 ```bash
-$ docker build -t nomutilisateur/nomrepository:nomtag -t nomutilisateur/nomrepository:latest .
+$ docker build -t [nomutilisateur]/[nomrepository]:[nomtag] -t [nomutilisateur]/[nomrepository]:[latest] .
 ````
 
 6. Vérifier l'image généré
@@ -34,12 +34,12 @@ $ docker build -t nomutilisateur/nomrepository:nomtag -t nomutilisateur/nomrepos
 $ docker images
 ````
 
-7. Tagger l'image docker nomutilisateur/nomrepository:nomtag
+7. Tagger l'image docker [nomutilisateur]/[nomrepository]:[nomtag]
 ```bash
-$ docker tag [imageID] 
+$ docker tag [imageID] [tagname]
 ````
 
 8. Pousser l'image vers le repository dockerhub
 ```bash
-$ docker push nomutilisateur/nomrepository:latest
+$ docker push [nomutilisateur]/[nomrepository]:[latest]
 ````
