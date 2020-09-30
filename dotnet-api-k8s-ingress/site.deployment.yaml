@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-backend-deployment
+  name: site-deployment
   labels: 
-    app: api
+    app: site
     system: backend
 spec:
-  replicas: 2
+  replicas: 1
   strategy: 
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 1
   selector:
     matchLabels:
-      app: api
+      app: site
       system: backend
   template: 
     metadata:
       labels:
-        app: api
+        app: site
         system: backend
     spec:
       containers:
-      - name: dotnet-api-k8s
-        image: sourcewalker/dotnet-api-k8s:nightly
+      - name: dotnet-mvc-backend-k8s
+        image: sourcewalker/dotnet-mvc-k8s:firsttry
         ports:
         - containerPort: 80
