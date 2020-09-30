@@ -9,13 +9,9 @@ spec:
   rules:
   - http:
       paths:
-      {{- range $name, $paths := .Values.app.ingress.paths }}
-      {{- range $key, $value := $paths }}
-      {{- with $value }}
+      {{- range .Values.app.ingress.paths }}
       - path: {{ .path }}
         backend:
           serviceName: {{ .serviceName }}
           servicePort: {{ .servicePort }}
-      {{- end }}
-      {{- end }}
       {{- end }}
