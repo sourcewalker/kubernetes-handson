@@ -3,12 +3,13 @@ app:
     name: app-ingress
 
     paths: 
-      - path: "/"
-        serviceName: site-service
-        servicePort: 80
-      - path: "/api"
-        serviceName: api-backend-service
-        servicePort: 80
+    - path: /
+      serviceName: site-service
+      servicePort: 80
+    - path: /api
+      serviceName: api-backend-service
+      servicePort: 80
+      
   deployment:
     strategyType: RollingUpdate
     maxUnavailable: 1
@@ -22,7 +23,7 @@ api:
   image:
     name: dotnet-api-k8s
     repository: sourcewalker/dotnet-api-k8s
-    tag: "nightly"
+    tag: nightly
     containerPort: 80
 
   service:
@@ -41,7 +42,7 @@ site:
   image:
     name: dotnet-mvc-backend-k8s
     repository: sourcewalker/dotnet-mvc-k8s
-    tag: "firsttry"
+    tag: firsttry
     containerPort: 80
 
   service:
