@@ -14,14 +14,20 @@ helm upgrade --install [releaseName] . \
   --debug \
 ````
 
+Pour lister les releases:
+
+```bash
+helm list
+````
+
 Pour annuler un deployment:
 
 ```bash
 helm rollback [releaseName]
 ````
 
-Pour lister les releases:
+Pour supprimer un deployment:
 
 ```bash
-helm list
+helm uninstall [releaseName]
 ````
